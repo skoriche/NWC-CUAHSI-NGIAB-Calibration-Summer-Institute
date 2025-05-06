@@ -1,0 +1,12 @@
+[submodule "tools/NGIAB_data_preprocess"]
+	path = tools/NGIAB_data_preprocess
+	url = https://github.com/CIROH-UA/NGIAB_data_preprocess.git
+	branch = main
+[submodule "tools/NGIAB-CloudInfra"]
+	path = tools/NGIAB-CloudInfra
+	url = https://github.com/CIROH-UA/NGIAB-CloudInfra.git
+	branch = main
+[submodule "tools/ngen-cal"]
+	path = tools/ngen-cal
+	url = https://github.com/CIROH-UA/ngen-cal.git
+	branch = ngiab_cal
