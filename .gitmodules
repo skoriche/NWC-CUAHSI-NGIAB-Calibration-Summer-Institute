@@ -10,3 +10,7 @@
 	path = tools/ngen-cal
 	url = https://github.com/CIROH-UA/ngen-cal.git
 	branch = ngiab_cal
+[submodule "tools/ngiab-cal"]
+	path = tools/ngiab-cal
+	url = https://github.com/CIROH-UA/ngiab-cal.git
+	branch = main
