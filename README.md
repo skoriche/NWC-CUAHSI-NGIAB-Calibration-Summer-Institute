@@ -1,10 +1,10 @@
-# CIROH DevCon 2025 Workshop: Hydrological Model Calibration in the NGIAB Ecosystem 
+# CIROH DevCon 2025 Workshop: Hydrological Model Calibration in the NGIAB Ecosystem
 
 Welcome to the GitHub repository for the CIROH DevCon 2025 workshop: **"How do I calibrate, regionalize and share the calibrated parameters in a NextGen Framework ecosystems"**.
 
-* **Date**: Thursday, May 29, 2025  
-* **Time**: 1:30 PM – 3:00 PM (US Eastern Time)  
-* **Address**: UVM Dudley H. Davis Center – Level 4, 590 Main Street, Burlington, VT 05405    
+* **Date**: Thursday, May 29, 2025
+* **Time**: 1:30 PM – 3:00 PM (US Eastern Time)
+* **Address**: UVM Dudley H. Davis Center – Level 4, 590 Main Street, Burlington, VT 05405
 * **Organized by the [Cooperative Institute for Research to Operations in Hydrology - CIROH](https://ciroh.ua.edu/devconference/)**
 
 ---
@@ -31,7 +31,7 @@ Welcome to the GitHub repository for the CIROH DevCon 2025 workshop: **"How do I
 
 This workshop offers a comprehensive guide to hydrological model calibration, regionalization, and parameter sharing within the NextGen In A Box (NGIAB) ecosystem. Participants will gain hands-on experience calibrating models using open-source tools and pre-made data with NGIAB and NGEN-Cal Docker images. The session includes step-by-step instructions for these practical exercises, alongside guidance for a development setup to modify underlying codes. Attendees will also learn best practices for regionalizing calibrated parameters for ungauged basins, explore effective methods for collaborative parameter management, and engage with a theoretical discussion on regionalization techniques. By the end, participants will possess practical skills and resources to enhance the reproducibility and scalability of their modeling workflows.
 
-Specifically, participants will: 
+Specifically, participants will:
 - Understand the fundamentals and theoretical underpinnings of model calibration, including its role in improving hydrological model accuracy.
 - Learn the theoretical basis of regionalization techniques for applying calibrated parameters to improve predictions in ungauged basins.
 - Gain hands-on experience with the step-by-step process of setting up and executing a full model calibration workflow within the NextGen/NGIAB ecosystem, utilizing open-source tools and pre-configured datasets.
@@ -68,16 +68,17 @@ This section guides you through the calibration workshop using the provided data
 
 ### 1.1. Tools/Modules Used for End-to-End Workflow
 
-This workshop leverages containerized environments to ensure consistency and ease of use. There are four tools [two contenarized based and two python CLI based] used in combination to carry out the calibration workflow in the NGIAB ecosystem.
-
+This workshop leverages containerized environments to ensure consistency and ease of use. There are four tools [two contenarized based and two python CLI based] used in combination to carry out the calibration workflow in the NGIAB ecosystem.    
+The use of docker containers and pipx packages mean you *do not need to install these tools to use them*. The only required software are [docker](https://docs.docker.com/engine/install/) and [astral-uv (uv)](https://docs.astral.sh/uv/getting-started/installation/). The modules in the `tools` folder are reference and development.
+    
 * **NGIAB (NextGen In A Box) Docker Image**: The NGIAB Docker image provides a containerized and user-friendly solution for running the NextGen framework. It bundles the NextGen software, its dependencies, and necessary tools, allowing you to control inputs, configurations, and model execution on your local machine or other Docker-compatible environments.
-    * **Build/Source**: The image is constructed using a Dockerfile which defines the operating system, installs required libraries, and packages the NextGen executables and associated scripts. *(The specific submodule for building this image is `tools/NGIAB-CloudInfra`, contains the Dockerfile and build scripts. For detailed instructions on building the image from the source, please refer to Part 2: Development Setup of this README). The latest NGIAB Docker image version used in this workshop is available on Docker-Hub [`awiciroh/ngiab:devcon25`]. See Development Setup of this README for details.* 
-
+    * **Build/Source**: The image is constructed using a Dockerfile which defines the operating system, installs required libraries, and packages the NextGen executables and associated scripts. *(The specific submodule for building this image is `tools/NGIAB-CloudInfra`, contains the Dockerfile and build scripts. For detailed instructions on building the image from the source, please refer to Part 2: Development Setup of this README). The latest NGIAB Docker image version used in this workshop is available on Docker-Hub [`awiciroh/ngiab:devcon25`]. See Development Setup of this README for details.*
+    
 * **NGEN-Cal Docker Image**: NGEN-Cal refers to the supporting code and workflows designed for the automated calibration of NextGen model formulations. This workshop specifically utilizes its capabilities for calibration, employing parameter optimization algorithms - Dynamic Dimensioned Search (DDS).
     * **Build/Source**: While the core NGEN-Cal calibration logic is Python-based (source code found in the `tools/ngen-cal` submodule), for ease of use in this workshop, it's often packaged within a Docker environment. A Docker image configured with NGEN-Cal and its dependencies for this workshop can be accessed from Docker Hub [`awiciroh/ngiab-cal:devcon25`]. For detailed instructions on modifying the NGEN-Cal code and potentially rebuilding its environment or image, please refer to Part 2: Development Setup of this README (also see Figure 1 for workflow context).*
-
+    
 * **NGIAB-Data-Preprocess**: This tool prepares data to run a next gen simulation by creating a run package that can be used with NGIAB. It uses geometry and model attributes from the [v2.2 hydrofabric](https://lynker-spatial.s3-us-west-2.amazonaws.com/hydrofabric/v2.2/conus/conus_nextgen.gpkg) more information on [all data sources here](https://lynker-spatial.s3-us-west-2.amazonaws.com/hydrofabric/v2.2/hfv2.2-data_model.html). The raw forcing data is [nwm retrospective v3 forcing](https://noaa-nwm-retrospective-3-0-pds.s3.amazonaws.com/index.html#CONUS/zarr/forcing/) data or the [AORC 1km gridded data](https://noaa-nws-aorc-v1-1-1km.s3.amazonaws.com/index.html) depending on user input.
-
+    
 * **NGIAB-Cal**: This is a utility that works with the [NGIAB folder structure](https://docs.ciroh.org/training-NGIAB-101/data-preparation.html#nextgen-run-directory-structure-ngen-run). It automates the creation of a calibration directory with all necessary configuration files to run a modified version of [ngen-cal](https://github.com/CIROH-UA/ngen-cal/tree/ngiab_cal). The tool simplifies these key tasks like - Creating calibration configurations, running the calibration process using Docker, and copying calibrated parameters back to your model configuration. The tool applies a standard hydrological modeling workflow, which involves warmup, calibration, and validation periods. The --warmup period is crucial for allowing the model to reach a stable state before its performance is evaluated against observed data. Following the warmup, the remaining period is typically divided into calibration (where model parameters are adjusted to match observations) and validation (where the model's performance with the calibrated parameters is tested on an independent dataset). The tool facilitates this split, as detailed in the diagram and options below.
 
 ---
@@ -87,17 +88,17 @@ This workshop leverages containerized environments to ensure consistency and eas
 To execute NextGen-based hydrological model simulations and proceed to calibration, a general workflow involves several key stages: preprocessing of forcing and hydrofabric data, creation of model configurations (realizations), setup of calibration parameters, and finally, the execution of simulation runs (as illustrated in Figure 1). These stages are typically handled by specialized tools within the NGIAB ecosystem:
 
 * **1. Prepare Data and Create Initial Configurations with `NGIAB_data_preprocess`**:
-    
+
     * **A. Prepare Hydrofabric Data [GPKG]**: This involves preparing the network and catchment information that defines the spatial domain of the model. The hydrofabric data used as a base for this workshop is the [v2.2 CONUS Hydrofabric](https://lynker-spatial.s3-us-west-2.amazonaws.com/hydrofabric/v2.2/conus/conus_nextgen.gpkg). Further details on its data model and sources can be found [here](https://lynker-spatial.s3-us-west-2.amazonaws.com/hydrofabric/v2.2/hfv2.2-data_model.html).
     * The `tools/NGIAB_data_preprocess` tool (`NGIAB_data_preprocess`) also manages the subsetting of this hydrofabric for the specific area of interest and prepares essential model inputs such as soil characteristics, land surface properties, catchment attributes, and flowpath (channel) properties.
 
     * **B. Prepare Forcing Data [Hydro-Met]**: This step involves preparing the meteorological and other input datasets required to drive the hydrological model.
     * The `tools/NGIAB_data_preprocess` tool (referred to as `NGIAB_data_preprocess`) is utilized for processing various forcing data sources.
     * For this workshop, primary forcing data sources include:
-        * [AORC 1km gridded data](https://noaa-nws-aorc-v1-1-1km.s3.amazonaws.com/index.html)
-        * Alternatively, [NWM Retrospective v3 forcing data](https://noaa-nwm-retrospective-3-0-pds.s3.amazonaws.com/index.html#CONUS/zarr/forcing/) may be used.
-    
-    * **Note on Data for the Workshop**: In the interest of saving time and ensuring consistency for this workshop, a ready-made data package is provided. This package, containing the necessary forcing data (and other required datasets), is located in the [`./Data/`](./Data/) directory of this repository. For more details on the contents and structure of this data, and general information about data sources, please refer to the `README.md` within the `./Data/` directory. The commands below illustrate how one *would* generate such data using the `NGIAB_data_preprocess` tool.
+        * [NWM Retrospective v3 forcing data](https://noaa-nwm-retrospective-3-0-pds.s3.amazonaws.com/index.html#CONUS/zarr/forcing/) may be used.
+        * Alternatively, [AORC 1km gridded data](https://noaa-nws-aorc-v1-1-1km.s3.amazonaws.com/index.html)
+
+    * **Note on Data for the Workshop**: In the interest of saving time and ensuring consistency for this workshop, a ready-made data package is provided. This package, containing the necessary forcing data (and other required datasets), is located in the [`./Data/`](./Data/) directory of this repository. For more details on the contents and structure of this data, and general information about data sources, please refer to ['./Data/README.md'](Data/Provo_River/README.md). The commands below illustrate how one *would* generate such data using the `NGIAB_data_preprocess` tool.
 
     * **C. Create Configurations/Realizations**:
         Once the core data is processed, this stage focuses on generating the specific configuration files that NextGen models require to run.
@@ -110,7 +111,9 @@ To execute NextGen-based hydrological model simulations and proceed to calibrati
         ```bash
         # Example: Prepare data for USGS gage 10154200 for Jan 1, 2022, to Feb 28, 2022, using AORC source,
         # saving to an output folder named 'cal_demo_run_package'.
-        uv run --from ngiab_data_preprocess cli -i gage-10154200 --start 2022-01-01 --end 2022-02-28 -sfr --source aorc -o cal_demo_run_package
+        uvx run --from ngiab_data_preprocess cli -i gage-10154200 --start 2022-01-01 --end 2022-02-28 -sfr --source aorc -o cal_demo_run_package
+        # or
+        uvx ngiab-prep -i gage-10154200 --start 2022-01-01 --end 2022-02-28 -sfr --source aorc -o cal_demo_run_package
         ```
 
         * For deatailed explanation of [`CLI COMMAND`] options refer to the ReadMe file from `tools/NGIAB_data_preprocess`. Here are few of them:
@@ -144,10 +147,7 @@ To execute NextGen-based hydrological model simulations and proceed to calibrati
             Specific `NGIAB-Cal` commands are used to perform these setup tasks. For detailed command usage, refer to the README file within the `tools/ngiab-cal/` submodule. An example to get help for setup-related commands might be exploring options within the main help or specific subcommands if they exist:
             ```bash
             # Example for general help (as per output provided later)
-            ngiab-cal --help 
-            # or
-            # uv run --from ngiab_cal --help 
-            # (If 'setup' is a subcommand, it would be ngiab-cal setup --help)
+            uvx ngiab-cal --help
             ```
 
         * **Editing Options for Calibration Run Setup**:
@@ -159,21 +159,21 @@ To execute NextGen-based hydrological model simulations and proceed to calibrati
 
     * **B. Running the Calibration Simulation**:
         After the configuration setup is complete and customized, you can initiate the calibration run.
-        * **Procedure**: This typically involves executing another `NGIAB-Cal` command that triggers the `NGEN-Cal` workflows, often within the NGIAB Docker environment. The system will then iteratively run the NextGen model, evaluate performance against observations, and adjust parameters based on the chosen optimization algorithm.
+        * **Procedure**: Running the simulation can be done automatically by adding `--run` to the ngiab-cal command as seen below, or manually by running the docker command output by ngiab-cal. If runnning manually, after running the docker command you fill be put into a folder with calibration.sh validation.sh and run.sh (calibration.sh + validation.sh)
         * **Monitoring**: Progress can usually be monitored via log files generated in the output directories (see point **3**) and console output.
         * **CLI Commands for Execution**:
-            The command to start the calibration run will also be part of the `NGIAB-Cal` toolset. For detailed command usage, refer to the README file within the `tools/ngiab-cal/` submodule. Examle commands for the different processes of calibration workflow:
+            For detailed command usage, use `--help` or refer to the README file within the `tools/ngiab-cal/` submodule. Examle commands for the different processes of calibration workflow:
             ```bash
             # Create calibration configuration
-            ngiab-cal /path/to/ngiab/data/folder -g USGS_GAGE_ID
+            uvx ngiab-cal /path/to/ngiab/data/folder -g USGS_GAGE_ID
 
             # Create and run calibration (200 iterations)
-            ngiab-cal /path/to/ngiab/data/folder -g USGS_GAGE_ID --run -i 200
+            uvx ngiab-cal /path/to/ngiab/data/folder -g USGS_GAGE_ID --run -i 200
 
             # Force recreation of calibration configuration
-            ngiab-cal /path/to/ngiab/data/folder -g USGS_GAGE_ID -f
-            ```
-                        
+            uvx ngiab-cal /path/to/ngiab/data/folder -g USGS_GAGE_ID -f -i 150
+            ```    
+    
             * **Help output for `ngiab-cal`**:
 
             ```
@@ -229,7 +229,7 @@ To execute NextGen-based hydrological model simulations and proceed to calibrati
     │       │   │   ├── Output_Calib/
     │       │   │   │   ├── cat-2863621.csv
     │       │   │   │   ├── cat-2863622.csv
-    │       │   │   │   ... 
+    │       │   │   │   ...
     │       │   │   │   ├── cat-2863848.csv
     │       │   │   │   ├── cat-2863849.csv
     │       │   │   │   ├── nex-2863621_output.csv
@@ -348,11 +348,14 @@ It is recommended that participants have:
 
 Participants will be provided with access to a Virtual Machine (VM) on NSF Jetstream, which will have all necessary software and packages pre-installed. You should verify your ability to access this VM before the workshop begins. Detailed instructions for accessing the VM will be emailed to registered attendees approximately one week before the conference.
 
+The minimum requirements are [docker](https://docs.docker.com/engine/install/) and [astral-uv (uv)](https://docs.astral.sh/uv/getting-started/installation/)
+
 For those who prefer or need to use their local machine, please ensure you have the following installed:
 * A modern laptop with an up-to-date web browser.
 * **Git**: For cloning repositories.
 * **Docker Desktop**: Essential for running the containerized environments.
-* **Python**: (e.g., Python 3.8 or newer). While the workshop primarily uses Docker, a local Python installation can be useful for script interaction or development.
+* **UV**: An extremely fast Python package and project manager, can be used instead of of pip and venv.
+* **Python (not needed if using UV)**: (e.g., Python 3.11 or newer). While the workshop primarily uses Docker, a local Python installation can be useful for script interaction or development.
 * **Windows Subsystem for Linux (WSL2)**: Required if you are using a Windows machine to ensure full Docker compatibility.
 * **Integrated Development Environment (IDE) or Code Editor**: Your preferred editor (e.g., VSCode, PyCharm, Sublime Text, Vim).
 
@@ -364,10 +367,98 @@ For those who prefer or need to use their local machine, please ensure you have 
 
 ## Part 2: Step-by-Step Instruction for Calibration Workshop (Development Setup)
 
-This section is for users who want to modify the code of the calibration tools or NextGen components. [TODO: ???]
+This section is for users who want to modify the code of the calibration tools or NextGen components.
+To install and build everything, run the following:
+```bash
+dev_install.sh
+```
+
+### How the tools interact
+Before building these tools from source, it's important to know how they interact to *avoid running the incorrect versions of the tools*.
+All of the commands above used `uvx` which will download and run the version of the python package published to pypi. to run the local version, replace it with `uv run` e.g. `uv run ngiab-cal`
+
+```mermaid
+flowchart TD
+
+    subgraph Source Code
+    subgraph python code
+        A[ngiab_data_preprocess]
+        B[ngiab-cal]
+    end
+    subgraph Local Docker Images
+        E["nextgen docker image"]
+        F["ngen-cal docker image"]
+    end
+    subgraph Builds docker images
+    C[NextGenInABox<br>NGIAB-Cloudinfra]
+    D["ngen-cal<br>(ngiab-cal branch)"]
+    end
+    end
 
 
+    A -- "--run command" --> E
+    B -- "--run command" --> F
 
+
+    C -- "builds" --> E
+    E -- "Base for" --> F
+    D -- "builds image <br>+ installs ngen-cal" --> F
+
+
+    %% Colors chosen to be visible in both light and dark themes with darker text
+    style A fill:#d8a0df,stroke:#000,stroke-width:2px,color:#000
+    style B fill:#a0c4ff,stroke:#000,stroke-width:2px,color:#000
+    style C fill:#a0dfa0,stroke:#000,stroke-width:2px,color:#000
+    style D fill:#ffb6a0,stroke:#000,stroke-width:2px,color:#000
+    style E fill:#c9c9c9,stroke:#000,stroke-width:2px,color:#000
+    style F fill:#c9c9c9,stroke:#000,stroke-width:2px,color:#000
+```
+
+### Published versions
+Each of these four tools in published publically and they're designed to interact with eachother's published version. Depending on which part you want to modify, you may need to multiple components.
+
+| github repo                                         | pypi (pip)            | Dockerhub                 |
+|-----------------------------------------------------|-----------------------|---------------------------|
+| https://github.com/CIROH-UA/ngiab_data_preprocess   | ngiab_data_preprocess |                           |
+| https://github.com/CIROH-UA/ngiab-cal               | ngiab-cal             |                           |
+| https://github.com/CIROH-UA/NGIAB-Cloudinfra        |                       | awiciroh/ciroh-ngen-image |
+| https://github.com/CIROH-UA/ngen-cal/tree/ngiab_cal |                       | awiciroh/ngiab-cal        |
+
+### Which tools to modify
+| Desired modification                                                  | code to modify        | also needs modifying |
+|-----------------------------------------------------------------------|-----------------------|----------------------|
+| subsetting, input forcings, model config                              | ngiab_data_preprocess |                      |
+| default calibration config, calibration cli tool                      | ngiab-cal-cli         |                      |
+| recompile ngen, models, t-route or add your own model                 | NGIAB-Cloudinfra      |                      |
+| change the calibration process, implement different search algorithms | ngen-cal              | NGIAB-Cloudinfra     |
+
+*Additionally, for `--run` to automatically run your images, the relevant python packages shown in the diagram above will need to be modified.
+## Development Installation
+#### Python packages
+```bash
+# download the code locally
+git submodule init
+git submodules update
+
+# install the local code
+uv pip install -e tools/NGIAB_data_preprocess
+uv pip install -e tools/ngiab-cal
+```    
+
+#### (Optional) building nextgen in a box
+```bash
+docker build -t my_ngiab tools/NGIAB-CloudInfra/docker/
+# change the ngen-cal base image by editing tools/ngen-cal/Dockerfile or running the command below
+sed -i 's/awiciroh\/ciroh-ngen-image/my_ngiab/' tools/ngen-cal/Dockerfile
+# Optionally patch the preprocessors --run command (this workshop won't use it)
+sed -i 's/awiciroh\/ciroh-ngen-image:latest /my_ngiab /g' tools/NGIAB_data_preprocess/modules/ngiab_data_cli/__main__.py
+```
+#### build ngen-cal image 
+```bash
+docker build -t ngiab_cal tools/ngen-cal/
+# patch ngiab-cal --run to use your image
+sed -i 's/DOCKER.*/DOCKER_IMAGE_NAME = "ngiab_cal"/g' tools/ngiab-cal/src/ngiab_cal/__main__.py
+```
 ---
 
 ## Contact
@@ -375,7 +466,7 @@ This section is for users who want to modify the code of the calibration tools o
 For questions regarding this workshop, the materials, or the tools, please use one of the following methods:
 
 * **Open an Issue:** The preferred method for questions, bug reports, or suggestions related to this repository is to [open an issue on GitHub](https://github.com/skoriche/NGIAB-Calibration-DevCon25/issues).
-* **Email:** For direct contact, you can reach out to `sakoriche@ua.edu`. 
+* **Email:** For direct contact, you can reach out to `sakoriche@ua.edu`.
 
 ---
 
