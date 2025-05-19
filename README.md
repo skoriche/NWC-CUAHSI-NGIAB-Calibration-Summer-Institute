@@ -348,11 +348,14 @@ It is recommended that participants have:
 
 Participants will be provided with access to a Virtual Machine (VM) on NSF Jetstream, which will have all necessary software and packages pre-installed. You should verify your ability to access this VM before the workshop begins. Detailed instructions for accessing the VM will be emailed to registered attendees approximately one week before the conference.
 
+The minimum requirements are [docker](https://docs.docker.com/engine/install/) and [astral-uv (uv)](https://docs.astral.sh/uv/getting-started/installation/)
+
 For those who prefer or need to use their local machine, please ensure you have the following installed:
 * A modern laptop with an up-to-date web browser.
 * **Git**: For cloning repositories.
 * **Docker Desktop**: Essential for running the containerized environments.
-* **Python**: (e.g., Python 3.11 or newer). While the workshop primarily uses Docker, a local Python installation can be useful for script interaction or development.
+* **UV**: An extremely fast Python package and project manager, can be used instead of of pip and venv.
+* **Python (not needed if using UV)**: (e.g., Python 3.11 or newer). While the workshop primarily uses Docker, a local Python installation can be useful for script interaction or development.
 * **Windows Subsystem for Linux (WSL2)**: Required if you are using a Windows machine to ensure full Docker compatibility.
 * **Integrated Development Environment (IDE) or Code Editor**: Your preferred editor (e.g., VSCode, PyCharm, Sublime Text, Vim).
 
@@ -364,7 +367,68 @@ For those who prefer or need to use their local machine, please ensure you have 
 
 ## Part 2: Step-by-Step Instruction for Calibration Workshop (Development Setup)
 
-This section is for users who want to modify the code of the calibration tools or NextGen components. [TODO: ???]
+This section is for users who want to modify the code of the calibration tools or NextGen components.
+
+### How the tools interact
+Before building these tools from source, it's important to know how they interact to *avoid running the incorrect versions of the tools*.
+All of the commands above used `uvx` which will download and run the version of the python package published to pypi. to run the local version, replace it with `uv run` e.g. `uv run ngiab-cal`
+
+```mermaid
+flowchart TD
+
+    subgraph Source Code
+    subgraph python code
+        A[ngiab_data_preprocess]
+        B[ngiab-cal]
+    end
+    subgraph Local Docker Images
+        E["nextgen docker image"]
+        F["ngen-cal docker image"]
+    end
+    subgraph Builds docker images
+    C[NextGenInABox<br>NGIAB-Cloudinfra]
+    D["ngen-cal<br>(ngiab-cal branch)"]
+    end
+    end
+
+
+    A -- "--run command" --> E
+    B -- "--run command" --> F
+
+
+    C -- "builds" --> E
+    E -- "Base for" --> F
+    D -- "builds image <br>+ installs ngen-cal" --> F
+
+
+    %% Colors chosen to be visible in both light and dark themes with darker text
+    style A fill:#d8a0df,stroke:#000,stroke-width:2px,color:#000
+    style B fill:#a0c4ff,stroke:#000,stroke-width:2px,color:#000
+    style C fill:#a0dfa0,stroke:#000,stroke-width:2px,color:#000
+    style D fill:#ffb6a0,stroke:#000,stroke-width:2px,color:#000
+    style E fill:#c9c9c9,stroke:#000,stroke-width:2px,color:#000
+    style F fill:#c9c9c9,stroke:#000,stroke-width:2px,color:#000
+```
+
+### Published versions
+Each of these four tools in published publically and they're designed to interact with eachother's published version. Depending on which part you want to modify, you may need to multiple components.
+
+| github repo                                         | pypi (pip)            | Dockerhub                 |
+|-----------------------------------------------------|-----------------------|---------------------------|
+| https://github.com/CIROH-UA/ngiab_data_preprocess   | ngiab_data_preprocess |                           |
+| https://github.com/CIROH-UA/ngiab-cal               | ngiab-cal             |                           |
+| https://github.com/CIROH-UA/NGIAB-Cloudinfra        |                       | awiciroh/ciroh-ngen-image |
+| https://github.com/CIROH-UA/ngen-cal/tree/ngiab_cal |                       | awiciroh/ngiab-cal        |
+
+### Which tools to modify
+| Desired modification                                                  | code to modify        | also needs modifying |
+|-----------------------------------------------------------------------|-----------------------|----------------------|
+| subsetting, input forcings, model config                              | ngiab_data_preprocess |                      |
+| default calibration config, calibration cli tool                      | ngiab-cal-cli         |                      |
+| recompile ngen, models, t-route or add your own model                 | NGIAB-Cloudinfra      |                      |
+| change the calibration process, implement different search algorithms | ngen-cal              | NGIAB-Cloudinfra     |
+*Additionally, for `--run` to automatically run your images, the relevant python packages shown in the diagram above will need to be modified.
+
 
 
 
