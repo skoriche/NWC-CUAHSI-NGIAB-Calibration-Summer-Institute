@@ -69,6 +69,7 @@ This section guides you through the calibration workshop using the provided data
 ### 1.1. Tools/Modules Used for End-to-End Workflow
 
 This workshop leverages containerized environments to ensure consistency and ease of use. There are four tools [two contenarized based and two python CLI based] used in combination to carry out the calibration workflow in the NGIAB ecosystem.
+The use of docker containers and pipx packages mean you *do not need to install these tools to use them*. The only required software are [docker](https://docs.docker.com/engine/install/) and [astral-uv (uv)](https://docs.astral.sh/uv/getting-started/installation/). The modules in the `tools` folder are reference and development.
 
 * **NGIAB (NextGen In A Box) Docker Image**: The NGIAB Docker image provides a containerized and user-friendly solution for running the NextGen framework. It bundles the NextGen software, its dependencies, and necessary tools, allowing you to control inputs, configurations, and model execution on your local machine or other Docker-compatible environments.
     * **Build/Source**: The image is constructed using a Dockerfile which defines the operating system, installs required libraries, and packages the NextGen executables and associated scripts. *(The specific submodule for building this image is `tools/NGIAB-CloudInfra`, contains the Dockerfile and build scripts. For detailed instructions on building the image from the source, please refer to Part 2: Development Setup of this README). The latest NGIAB Docker image version used in this workshop is available on Docker-Hub [`awiciroh/ngiab:devcon25`]. See Development Setup of this README for details.*
@@ -146,10 +147,7 @@ To execute NextGen-based hydrological model simulations and proceed to calibrati
             Specific `NGIAB-Cal` commands are used to perform these setup tasks. For detailed command usage, refer to the README file within the `tools/ngiab-cal/` submodule. An example to get help for setup-related commands might be exploring options within the main help or specific subcommands if they exist:
             ```bash
             # Example for general help (as per output provided later)
-            ngiab-cal --help
-            # or
-            # uv run --from ngiab_cal --help
-            # (If 'setup' is a subcommand, it would be ngiab-cal setup --help)
+            uvx ngiab-cal --help
             ```
 
         * **Editing Options for Calibration Run Setup**:
@@ -161,19 +159,19 @@ To execute NextGen-based hydrological model simulations and proceed to calibrati
 
     * **B. Running the Calibration Simulation**:
         After the configuration setup is complete and customized, you can initiate the calibration run.
-        * **Procedure**: This typically involves executing another `NGIAB-Cal` command that triggers the `NGEN-Cal` workflows, often within the NGIAB Docker environment. The system will then iteratively run the NextGen model, evaluate performance against observations, and adjust parameters based on the chosen optimization algorithm.
+        * **Procedure**: Running the simulation can be done automatically by adding `--run` to the ngiab-cal command as seen below, or manually by running the docker command output by ngiab-cal. If runnning manually, after running the docker command you fill be put into a folder with calibration.sh validation.sh and run.sh (calibration.sh + validation.sh)
         * **Monitoring**: Progress can usually be monitored via log files generated in the output directories (see point **3**) and console output.
         * **CLI Commands for Execution**:
-            The command to start the calibration run will also be part of the `NGIAB-Cal` toolset. For detailed command usage, refer to the README file within the `tools/ngiab-cal/` submodule. Examle commands for the different processes of calibration workflow:
+            For detailed command usage, use `--help` or refer to the README file within the `tools/ngiab-cal/` submodule. Examle commands for the different processes of calibration workflow:
             ```bash
             # Create calibration configuration
-            ngiab-cal /path/to/ngiab/data/folder -g USGS_GAGE_ID
+            uvx ngiab-cal /path/to/ngiab/data/folder -g USGS_GAGE_ID
 
             # Create and run calibration (200 iterations)
-            ngiab-cal /path/to/ngiab/data/folder -g USGS_GAGE_ID --run -i 200
+            uvx ngiab-cal /path/to/ngiab/data/folder -g USGS_GAGE_ID --run -i 200
 
             # Force recreation of calibration configuration
-            ngiab-cal /path/to/ngiab/data/folder -g USGS_GAGE_ID -f
+            uvx ngiab-cal /path/to/ngiab/data/folder -g USGS_GAGE_ID -f -i 150
             ```
 
             * **Help output for `ngiab-cal`**:
@@ -354,7 +352,7 @@ For those who prefer or need to use their local machine, please ensure you have 
 * A modern laptop with an up-to-date web browser.
 * **Git**: For cloning repositories.
 * **Docker Desktop**: Essential for running the containerized environments.
-* **Python**: (e.g., Python 3.8 or newer). While the workshop primarily uses Docker, a local Python installation can be useful for script interaction or development.
+* **Python**: (e.g., Python 3.11 or newer). While the workshop primarily uses Docker, a local Python installation can be useful for script interaction or development.
 * **Windows Subsystem for Linux (WSL2)**: Required if you are using a Windows machine to ensure full Docker compatibility.
 * **Integrated Development Environment (IDE) or Code Editor**: Your preferred editor (e.g., VSCode, PyCharm, Sublime Text, Vim).
 
