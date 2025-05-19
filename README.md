@@ -368,6 +368,10 @@ For those who prefer or need to use their local machine, please ensure you have 
 ## Part 2: Step-by-Step Instruction for Calibration Workshop (Development Setup)
 
 This section is for users who want to modify the code of the calibration tools or NextGen components.
+To install and build everything, run the following:
+```bash
+dev_install.sh
+```
 
 ### How the tools interact
 Before building these tools from source, it's important to know how they interact to *avoid running the incorrect versions of the tools*.
@@ -429,10 +433,32 @@ Each of these four tools in published publically and they're designed to interac
 | change the calibration process, implement different search algorithms | ngen-cal              | NGIAB-Cloudinfra     |
 
 *Additionally, for `--run` to automatically run your images, the relevant python packages shown in the diagram above will need to be modified.
+## Development Installation
+#### Python packages
+```bash
+# download the code locally
+git submodule init
+git submodules update
 
+# install the local code
+uv pip install -e tools/NGIAB_data_preprocess
+uv pip install -e tools/ngiab-cal
+```    
 
-
-
+#### (Optional) building nextgen in a box
+```bash
+docker build -t my_ngiab tools/NGIAB-CloudInfra/docker/
+# change the ngen-cal base image by editing tools/ngen-cal/Dockerfile or running the command below
+sed -i 's/awiciroh\/ciroh-ngen-image/my_ngiab/' tools/ngen-cal/Dockerfile
+# Optionally patch the preprocessors --run command (this workshop won't use it)
+sed -i 's/awiciroh\/ciroh-ngen-image:latest /my_ngiab /g' tools/NGIAB_data_preprocess/modules/ngiab_data_cli/__main__.py
+```
+#### build ngen-cal image 
+```bash
+docker build -t ngiab_cal tools/ngen-cal/
+# patch ngiab-cal --run to use your image
+sed -i 's/DOCKER.*/DOCKER_IMAGE_NAME = "ngiab_cal"/g' tools/ngiab-cal/src/ngiab_cal/__main__.py
+```
 ---
 
 ## Contact
