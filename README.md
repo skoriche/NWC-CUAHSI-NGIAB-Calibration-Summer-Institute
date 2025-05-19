@@ -95,10 +95,10 @@ To execute NextGen-based hydrological model simulations and proceed to calibrati
     * **B. Prepare Forcing Data [Hydro-Met]**: This step involves preparing the meteorological and other input datasets required to drive the hydrological model.
     * The `tools/NGIAB_data_preprocess` tool (referred to as `NGIAB_data_preprocess`) is utilized for processing various forcing data sources.
     * For this workshop, primary forcing data sources include:
-        * [AORC 1km gridded data](https://noaa-nws-aorc-v1-1-1km.s3.amazonaws.com/index.html)
-        * Alternatively, [NWM Retrospective v3 forcing data](https://noaa-nwm-retrospective-3-0-pds.s3.amazonaws.com/index.html#CONUS/zarr/forcing/) may be used.
+        * [NWM Retrospective v3 forcing data](https://noaa-nwm-retrospective-3-0-pds.s3.amazonaws.com/index.html#CONUS/zarr/forcing/) may be used.
+        * Alternatively, [AORC 1km gridded data](https://noaa-nws-aorc-v1-1-1km.s3.amazonaws.com/index.html)
 
-    * **Note on Data for the Workshop**: In the interest of saving time and ensuring consistency for this workshop, a ready-made data package is provided. This package, containing the necessary forcing data (and other required datasets), is located in the [`./Data/`](./Data/) directory of this repository. For more details on the contents and structure of this data, and general information about data sources, please refer to the `README.md` within the `./Data/` directory. The commands below illustrate how one *would* generate such data using the `NGIAB_data_preprocess` tool.
+    * **Note on Data for the Workshop**: In the interest of saving time and ensuring consistency for this workshop, a ready-made data package is provided. This package, containing the necessary forcing data (and other required datasets), is located in the [`./Data/`](./Data/) directory of this repository. For more details on the contents and structure of this data, and general information about data sources, please refer to ['./Data/README.md'](Data/Provo_River/README.md). The commands below illustrate how one *would* generate such data using the `NGIAB_data_preprocess` tool.
 
     * **C. Create Configurations/Realizations**:
         Once the core data is processed, this stage focuses on generating the specific configuration files that NextGen models require to run.
