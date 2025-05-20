@@ -459,6 +459,7 @@ docker build -t ngiab_cal tools/ngen-cal/
 # patch ngiab-cal --run to use your image
 sed -i 's/DOCKER.*/DOCKER_IMAGE_NAME = "ngiab_cal"/g' tools/ngiab-cal/src/ngiab_cal/__main__.py
 ```
+
 ---
 
 ## Contact
@@ -466,10 +467,9 @@ sed -i 's/DOCKER.*/DOCKER_IMAGE_NAME = "ngiab_cal"/g' tools/ngiab-cal/src/ngiab_
 For questions regarding this workshop, the materials, or the tools, please use one of the following methods:
 
 * **Open an Issue:** The preferred method for questions, bug reports, or suggestions related to this repository is to [open an issue on GitHub](https://github.com/skoriche/NGIAB-Calibration-DevCon25/issues).
-* **Email:** For direct contact, you can reach out to `sakoriche@ua.edu`.
+* **Email:** For direct contact, you can reach out to Sifan A. Koriche [[sakoriche@ua.edu](mailto:sakoriche@ua.edu)] and Joshua Cunningham [[jcunningham8@ua.edu](mailto:jcunningham8@ua.edu)].
 
 ---
-
 ## Acknowledgment
 
 This workshop was supported by the Cooperative Institute for Research to Operations in Hydrology (CIROH) with funding from the NOAA Cooperative Institute Program. The statements, findings, conclusions, and recommendations are those of the author(s) and do not necessarily reflect the opinions of NOAA.
