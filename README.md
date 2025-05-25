@@ -48,6 +48,9 @@ _Figure 1: End-to-end visual representation of the NextGen In A Box (NGIAB) ecos
 
 The Next Generation Water Resources Modeling Framework (NextGen) is a model-agnostic, standards-based, model interoperability software tool. It allows for the explicit coupling of models by enabling the sequential sharing of computed states and/or fluxes between different domain science models or modules.
 
+<details>
+<summary>Key characteristics and platforms (Click to expand)...</summary>
+
 Key characteristics and components include:
 * **Model Interoperability**: Designed to facilitate seamless interaction between various hydrological models and modules.
 * **Standards-Based**: Adheres to defined standards to ensure consistency and compatibility.
@@ -60,6 +63,10 @@ NextGen is designed to be flexible and can be built and run on various platforms
 * High-Performance Computing (HPC) clusters.
 * Personal computers (macOS, Windows via WSL2, Linux) using containerization tools like Docker [Singularity on HPC].
 
+</details>
+
+For more information, visit the [What is NextGen? page on our Wiki](https://github.com/skoriche/NGIAB-Calibration-DevCon25/wiki/What-is-NextGen).
+
 ---
 
 ## Part 1: Step-by-Step Instruction (Using Ready-made Data and Docker Images)
@@ -70,7 +77,10 @@ This section guides you through the calibration workshop using the provided data
 
 This workshop leverages containerized environments to ensure consistency and ease of use. There are four tools [two contenarized based and two python CLI based] used in combination to carry out the calibration workflow in the NGIAB ecosystem.    
 The use of docker containers and pipx packages mean you *do not need to install these tools to use them*. The only required software are [docker](https://docs.docker.com/engine/install/) and [astral-uv (uv)](https://docs.astral.sh/uv/getting-started/installation/). The modules in the `tools` folder are reference and development.
-    
+
+<details>
+<summary>Details on Tools/Modules (Click to expand)...</summary>
+
 * **NGIAB (NextGen In A Box) Docker Image**: The NGIAB Docker image provides a containerized and user-friendly solution for running the NextGen framework. It bundles the NextGen software, its dependencies, and necessary tools, allowing you to control inputs, configurations, and model execution on your local machine or other Docker-compatible environments.
     * **Build/Source**: The image is constructed using a Dockerfile which defines the operating system, installs required libraries, and packages the NextGen executables and associated scripts. *(The specific submodule for building this image is `tools/NGIAB-CloudInfra`, contains the Dockerfile and build scripts. For detailed instructions on building the image from the source, please refer to Part 2: Development Setup of this README). The latest NGIAB Docker image version used in this workshop is available on Docker-Hub [`awiciroh/ngiab:devcon25`]. See Development Setup of this README for details.*
     
@@ -80,6 +90,9 @@ The use of docker containers and pipx packages mean you *do not need to install 
 * **NGIAB-Data-Preprocess**: This tool prepares data to run a next gen simulation by creating a run package that can be used with NGIAB. It uses geometry and model attributes from the [v2.2 hydrofabric](https://lynker-spatial.s3-us-west-2.amazonaws.com/hydrofabric/v2.2/conus/conus_nextgen.gpkg) more information on [all data sources here](https://lynker-spatial.s3-us-west-2.amazonaws.com/hydrofabric/v2.2/hfv2.2-data_model.html). The raw forcing data is [nwm retrospective v3 forcing](https://noaa-nwm-retrospective-3-0-pds.s3.amazonaws.com/index.html#CONUS/zarr/forcing/) data or the [AORC 1km gridded data](https://noaa-nws-aorc-v1-1-1km.s3.amazonaws.com/index.html) depending on user input.
     
 * **NGIAB-Cal**: This is a utility that works with the [NGIAB folder structure](https://docs.ciroh.org/training-NGIAB-101/data-preparation.html#nextgen-run-directory-structure-ngen-run). It automates the creation of a calibration directory with all necessary configuration files to run a modified version of [ngen-cal](https://github.com/CIROH-UA/ngen-cal/tree/ngiab_cal). The tool simplifies these key tasks like - Creating calibration configurations, running the calibration process using Docker, and copying calibrated parameters back to your model configuration. The tool applies a standard hydrological modeling workflow, which involves warmup, calibration, and validation periods. The --warmup period is crucial for allowing the model to reach a stable state before its performance is evaluated against observed data. Following the warmup, the remaining period is typically divided into calibration (where model parameters are adjusted to match observations) and validation (where the model's performance with the calibrated parameters is tested on an independent dataset). The tool facilitates this split, as detailed in the diagram and options below.
+
+</details>
+For a comprehensive list and explanation of tools, see the [Tools and Modules page on our Wiki](https://github.com/skoriche/NGIAB-Calibration-DevCon25/wiki/Tools-and-Modules).
 
 ---
 
@@ -207,6 +220,8 @@ To execute NextGen-based hydrological model simulations and proceed to calibrati
 * **3. Expected Directory Structure (Resulting from Data Preprocessing and Calibration)**:
     After running the data preprocessing steps (using `NGIAB_data_preprocess`) and subsequently setting up and executing a calibration run (using `ngiab-cal`), you can expect a directory structure similar to the example below. This structure organizes input configurations, intermediate files, and calibration outputs. The exact contents, especially within the `Output` subdirectories, will depend on the specific configuration and execution of the calibration process.
 
+    <details>
+    <summary>Details on Directory Structure (Click to expand)...</summary>
     The main calibration directory (e.g., `provo_cal_test_AORC` in this example) would contain:
 
     ```text
@@ -321,6 +336,9 @@ To execute NextGen-based hydrological model simulations and proceed to calibrati
         └── troute/
     ```
 
+    </details>
+    For a comprehensive list Directory Structure, see the [Directory Structure page on our Wiki](https://github.com/skoriche/NGIAB-Calibration-DevCon25/wiki/Directory-Structure).
+
 ---
 
 ### 1.3 Workshop Slides
@@ -368,6 +386,10 @@ For those who prefer or need to use their local machine, please ensure you have 
 ## Part 2: Step-by-Step Instruction for Calibration Workshop (Development Setup)
 
 This section is for users who want to modify the code of the calibration tools or NextGen components.
+
+<details>
+<summary>Expand for Development Setup Instructions (Click to expand)...</summary>
+
 To install and build everything, run the following:
 ```bash
 dev_install.sh
@@ -462,6 +484,10 @@ docker build -t ngiab_cal tools/ngen-cal/
 # patch ngiab-cal --run to use your image
 sed -i 's/^DOCKER.*/DOCKER_IMAGE_NAME = "ngiab_cal"/g' tools/ngiab-cal/src/ngiab_cal/__main__.py
 ```
+
+</details>
+
+For comprehensive development setup instructions, please visit the [Development Setup page on our Wiki](https://github.com/skoriche/NGIAB-Calibration-DevCon25/wiki/Development-Setup).
 
 ---
 
