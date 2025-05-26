@@ -47,18 +47,20 @@ This hands-on workshop provides comprehensive guidance for hydrological model ca
 
 ## 🛠️ Prerequisites
 
-**Minimum Requirements:**
-- [Docker](https://docs.docker.com/engine/install/) (for running containerized tools)
-- [UV](https://docs.astral.sh/uv/getting-started/installation/) (Python package manager)
-
 **For Workshop Participants:**
 - Access to provided Jetstream Virtual Machines (instructions emailed before workshop)
+- All required software installed (e.g., Docker, UV)
 - Pre-installed data at `/home/exouser/workshop/calibration/provo-10154200`
 
 **For Local Setup:**
 - Download workshop data: `https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz` [Click Here to Download](https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz)
 
-> 📋 **Complete setup guide**: [Pre-Workshop Checklist](../../wiki/Pre-Workshop-Checklist)
+**Minimum Requirements:**
+- [Docker](https://docs.docker.com/engine/install/) (for running containerized tools)
+- [UV](https://docs.astral.sh/uv/getting-started/installation/) (Python package manager)
+
+> 📋 **For complete setup instructions and requirements**: [Pre-Workshop Checklist](../../wiki/Pre-Workshop-Checklist)
+
 
 ---
 
@@ -79,6 +81,7 @@ This hands-on workshop provides comprehensive guidance for hydrological model ca
 - [Directory Structure](../../wiki/Directory-Structure) - File organization reference
 
 ### 📞 Support
+- [Troubleshooting](../../wiki/Troubleshooting) - Common issues and solutions
 - [Contact Information](../../wiki/Contact) - Get help and support
 - [GitHub Issues](https://github.com/skoriche/NGIAB-Calibration-DevCon25/issues) - Report bugs or ask questions
 
@@ -159,41 +162,18 @@ cd NGIAB-Calibration-DevCon25
 
 ## 🤝 Getting Help
 
-### During the Workshop
-- Ask instructors and assistants
-- Use workshop Slack/chat channels
-- Collaborate with fellow participants
-
-### After the Workshop
-- [Open GitHub Issues](https://github.com/skoriche/NGIAB-Calibration-DevCon25/issues) for bugs/questions
-- Email contacts: [sakoriche@ua.edu](mailto:sakoriche@ua.edu), [jcunningham8@ua.edu](mailto:jcunningham8@ua.edu)
-- Browse the [complete wiki](../../wiki) for detailed documentation
+- **During the Workshop**: Ask instructors and assistants
+- **Common Issues**: See [Troubleshooting Guide](../../wiki/Troubleshooting)
+- **Questions/Bugs**: [Open GitHub Issues](https://github.com/skoriche/NGIAB-Calibration-DevCon25/issues)
+- **Email**: [sakoriche@ua.edu](mailto:sakoriche@ua.edu), [jcunningham8@ua.edu](mailto:jcunningham8@ua.edu)
 
 ---
 
 ## 📝 License and Acknowledgment
 
-This workshop was supported by the **Cooperative Institute for Research to Operations in Hydrology (CIROH)** with funding from the **NOAA Cooperative Institute Program**. 
+This workshop was supported by the **Cooperative Institute for Research to Operations in Hydrology (CIROH)** with funding from the **NOAA Cooperative Institute Program**.
 
 The statements, findings, conclusions, and recommendations are those of the author(s) and do not necessarily reflect the opinions of NOAA.
-
-> 📞 **Full contact info**: [Contact and Acknowledgment](../../wiki/Contact)
-
----
-
-## 🗂️ Repository Structure
-
-```
-├── 📁 Data/                    # Workshop datasets (Provo River example)
-├── 📁 Information/             # Workshop materials and figures  
-├── 📁 Slides/                  # Presentation slides
-├── 📁 tools/                   # Source code submodules
-│   ├── NGIAB_data_preprocess/  # Data preparation tool
-│   ├── ngiab-cal/              # Calibration CLI tool  
-│   ├── NGIAB-CloudInfra/       # Docker build configurations
-│   └── ngen-cal/               # Calibration algorithms
-└── 📄 dev_install.sh           # Development setup script
-```
 
 ---
 
