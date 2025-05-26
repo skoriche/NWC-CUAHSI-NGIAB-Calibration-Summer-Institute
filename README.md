@@ -33,7 +33,6 @@ This hands-on workshop provides comprehensive guidance for hydrological model ca
 ### What You'll Learn
 
 - ✅ **Model Calibration Fundamentals** - Theory and practice of improving hydrological model accuracy
-- ✅ **Regionalization Techniques** - Apply calibrated parameters to ungauged basins
 - ✅ **Hands-on NextGen Experience** - Complete calibration workflows using real tools and data
 - ✅ **Parameter Management** - Share and collaborate on calibrated parameters effectively
 - ✅ **Best Practices** - Learn from experts and discuss real-world challenges
@@ -57,7 +56,7 @@ This hands-on workshop provides comprehensive guidance for hydrological model ca
 - Pre-installed data at `/home/exouser/workshop/calibration/provo-10154200`
 
 **For Local Setup:**
-- Download workshop data: `https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz`
+- Download workshop data: `https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz` [Click Here to Download](https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz)
 
 > 📋 **Complete setup guide**: [Pre-Workshop Checklist](../../wiki/Pre-Workshop-Checklist)
 
@@ -89,18 +88,18 @@ This hands-on workshop provides comprehensive guidance for hydrological model ca
 
 **On Jetstream VMs:**
 ```bash
-cd /home/exouser/workshop/calibration/provo-10154200
-uvx ngiab-cal . -g 10154200 --run -i 20
+cd /home/exouser/workshop/calibration/
+uvx ngiab-cal provo-10154200 -g 10154200 --run -i 4
 ```
 
 **On Local Systems:**
 ```bash
 wget https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz
-tar -xzf provo-10154200.tar.gz && cd provo-10154200
-uvx ngiab-cal . -g 10154200 --run -i 20
+tar -xzf provo-10154200.tar.gz
+uvx ngiab-cal provo-10154200 -g 10154200 --run -i 4
 ```
 
-That's it! Your first calibration will complete in ~5-10 minutes.
+That's it! Your first calibration will complete in ~10-15 minutes.
 
 > 🔍 **Want details?** See the [Quickstart Guide](../../wiki/Quickstart-Guide) for complete instructions.
 
@@ -112,10 +111,10 @@ This workshop uses four integrated tools:
 
 | Tool | Purpose | Type |
 |------|---------|------|
-| **NGIAB-Data-Preprocess** | Prepare hydrofabric and forcing data | Python CLI |
-| **NGIAB-Cal** | Configure and run calibration | Python CLI |
-| **NGIAB** | NextGen framework container | Docker Image |
-| **NGEN-Cal** | Calibration algorithms and analysis | Docker Image |
+| [**NGIAB-Data-Preprocess**](https://github.com/CIROH-UA/NGIAB_data_preprocess/tree/a6dd733f637cb56ce42a43204db69e3cefa2a61a) | Prepare hydrofabric and forcing data | Python CLI |
+| [**NGIAB-Cal**](https://github.com/CIROH-UA/ngiab-cal/tree/19d5ded2ae365f333b0ac6a971c2e7028c7014a4) | Configure and run calibration | Python CLI |
+| [**NGIAB**](https://github.com/CIROH-UA/NGIAB-CloudInfra/tree/41570096a5273393f2e3a0121d02e643bc6ce34d) | NextGen framework container | Docker Image |
+| [**NGEN-Cal**](https://github.com/CIROH-UA/ngen-cal/tree/f450a9d2e992adf0e110711c559551623b73932d) | Calibration algorithms and analysis | Docker Image |
 
 > 🔧 **Learn more**: [Tools and Modules](../../wiki/Tools-and-Modules)
 
