@@ -41,13 +41,13 @@ This hands-on workshop provides comprehensive guidance for hydrological model ca
 
 ![Workshop Workflow](./Information/figures/Workflow-Figure.png)
 
-*Complete workflow from data preparation through calibration to validation and parameter sharing*
+*Complete workflow from data preparation through calibration to validation and parameter sharing. 1) Python CLI data preparation modules for NGIAB, 2a) NGIAB Docker image, 2b) NGIAB-cal Docker image + Python CLI for Calibration, and 3) TEEHR evaluation + visualizer*
 
 ---
 
 ## 🛠️ Prerequisites
 
-**For Workshop Participants:**
+**For Jetstream Virtual Machines:**
 - Access to provided Jetstream Virtual Machines (instructions emailed before workshop)
 - All required software installed (e.g., Docker, UV)
 - Pre-installed data at `/home/exouser/workshop/calibration/provo-10154200`
