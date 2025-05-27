@@ -171,9 +171,14 @@ cd NGIAB-Calibration-DevCon25
 
 ## 📝 License and Acknowledgment
 
-This workshop was supported by the **Cooperative Institute for Research to Operations in Hydrology (CIROH)** with funding from the **NOAA Cooperative Institute Program**.
+This workshop is supported by the Cooperative Institute for Research to Operations in Hydrology (CIROH) with funding from the NOAA Cooperative Institute Program. The tools, workflows, and concepts presented in this workshop build upon the significant efforts and contributions of several key groups and individuals. We gratefully acknowledge:
 
-The statements, findings, conclusions, and recommendations are those of the author(s) and do not necessarily reflect the opinions of NOAA.
+- The development of the `NextGen In A Box (NGIAB) ecosystem` is a central initiative of `CIROH-UA`, with key development contributions from the `AWI Science and Technology Team`.
+- The core `NGEN-Cal tool`, fundamental to the calibration processes showcased, was developed by the `NOAA Office of Water Prediction (NOAA-OWP)` in collaboration with `Lynker`.
+- The `NGEN-Cal calibration workflow`, initially developed by `Xia Feng`, was subsequently refactored and integrated to operate within the NGIAB ecosystem by `Josh Cunningham`, with crucial domain science contributions from `Sifan A. Koriche, Md Shahabul Alam, and James Halgren`.
+- This `GitHub repository`, which serves as the central hub for all workshop materials, tools, detailed instructions, pre-conference and other relevant information, was prepared and is maintained by `Sifan A. Koriche and Josh Cunningham`.
+
+The statements, findings, conclusions, and recommendations presented in this workshop and its associated materials are those of the author(s) and do not necessarily reflect the official opinions of `NOAA`, `CIROH`, or the other acknowledged contributing organizations and individuals.
 
 ---
 
