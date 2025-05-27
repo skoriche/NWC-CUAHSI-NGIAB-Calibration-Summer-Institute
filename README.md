@@ -82,7 +82,7 @@ This hands-on workshop provides comprehensive guidance for hydrological model ca
 
 ### 📞 Support
 - [Troubleshooting](../../wiki/Troubleshooting) - Common issues and solutions
-- [Contact Information](../../wiki/Contact) - Get help and support
+- [Contact Information](../../wiki/Contact-and-Acknowledgment) - Get help and support
 - [GitHub Issues](https://github.com/skoriche/NGIAB-Calibration-DevCon25/issues) - Report bugs or ask questions
 
 ---
