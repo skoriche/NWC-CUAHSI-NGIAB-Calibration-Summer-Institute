@@ -41,7 +41,7 @@ This hands-on workshop provides comprehensive guidance for hydrological model ca
 
 ![Workshop Workflow](./Information/figures/Workflow-Figure.png)
 
-*Complete workflow from data preparation through calibration to validation and parameter sharing. 1) Python CLI data preparation modules for NGIAB, 2a) NGIAB Docker image, 2b) NGIAB-cal Docker image + Python CLI for Calibration, and 3) TEEHR evaluation + visualizer*
+*Figure 1: End-to-end visual representation of the NextGen In A Box (NGIAB) ecosystem's hydrological simulation workflow, detailing phases for data preparation, model simulation, parameter calibration, and output analysis steps. 1) Python CLI data preparation modules for NGIAB, 2a) NGIAB Docker image, 2b) NGIAB-cal Docker image + Python CLI for Calibration, and 3) TEEHR evaluation + visualizer*
 
 ---
 
