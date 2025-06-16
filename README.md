@@ -182,7 +182,6 @@ The Summer Institute is a partnership between CUAHSI, and the University of Alab
 - The development of the `NextGen In A Box (NGIAB) ecosystem` is a central initiative of `CIROH-UA`, with key development contributions from the `AWI Science and Technology Team`.
 - The core `NGEN-Cal tool`, fundamental to the calibration processes showcased, was developed by the `NOAA Office of Water Prediction (NOAA-OWP)` in collaboration with `Lynker`.
 - The `NGEN-Cal calibration workflow`, initially developed by `Xia Feng`, was subsequently refactored and integrated to operate within the NGIAB ecosystem by `Josh Cunningham`, with crucial domain science contributions from `Sifan A. Koriche, Md Shahabul Alam, and James Halgren`.
-- This `GitHub repository`, which serves as the central hub for all workshop materials, tools, detailed instructions, pre-conference and other relevant information, was prepared and is maintained by `Sifan A. Koriche and Josh Cunningham`.
 
 ---
 
