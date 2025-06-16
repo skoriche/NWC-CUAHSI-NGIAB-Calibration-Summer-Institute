@@ -1,17 +1,21 @@
-# CIROH DevCon 2025 Workshop: Hydrological Model Calibration in the NGIAB Ecosystem
+# NWC-CUAHSI Summer Institute 2025 Workshop: Hydrological Model Calibration in the NGIAB Ecosystem
 
-[![Workshop](https://img.shields.io/badge/Workshop-CIROH%20DevCon%202025-blue.svg)](https://ciroh.ua.edu/devconference/)
+[![Workshop](https://img.shields.io/badge/Workshop-NWC--CUAHSI%20Summer%20Institute-blue?labelColor=555)](https://www.cuahsi.org/summer-institute)
 [![NextGen](https://img.shields.io/badge/NextGen-Framework-green.svg)](https://github.com/NOAA-OWP/ngen)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](https://docs.docker.com/engine/install/)
 
-**"How do I calibrate, regionalize and share the calibrated parameters in a NextGen Framework ecosystem"**
+**"How do I calibrate and share the calibrated parameters in a NextGen Framework ecosystem"**
 
-* **📅 Date**: Thursday, May 29, 2025
-* **⏰ Time**: 1:30 PM – 3:00 PM (US Eastern Time)
-* **📍 Location**: UVM Dudley H. Davis Center – Level 4, 590 Main Street, Burlington, VT 05405
-* **🏛️ Organized by**: [Cooperative Institute for Research to Operations in Hydrology - CIROH](https://ciroh.ua.edu/devconference/)
+* **📅 Date**: Thursday, June 18, 2025
+* **⏰ Time**: Wednesday, June 18 | 10:45 – 12 pm CT
+* **📍 Location**: Cyber Hall GWSC classroom, Room number 1160, 248 Kirkbride Ln, Tuscaloosa, AL 35401
+* **🏛️ Organized by**: [CUAHSI](https://www.cuahsi.org/summer-institute) and [The University of Alabama](https://ciroh.ua.edu/devconference/)
 
 ---
+
+## 👥 Instructors 
+
+This `GitHub repository`, which serves as the central hub for all workshop materials, tools, detailed instructions, pre-conference and other relevant information, was prepared and is maintained by [Sifan A. Koriche](https://github.com/skoriche) and [Josh Cunningham](https://github.com/JoshCu).
 
 ## 🚀 Quick Start
 
@@ -42,6 +46,8 @@ This hands-on workshop provides comprehensive guidance for hydrological model ca
 ![Workshop Workflow](./Information/figures/Workflow-Figure.png)
 
 *Figure 1: End-to-end visual representation of the NextGen In A Box (NGIAB) ecosystem's hydrological simulation workflow, detailing phases for data preparation, model simulation, parameter calibration, and output analysis steps. 1) Python CLI data preparation modules for NGIAB, 2a) NGIAB Docker image, 2b) NGIAB-cal Docker image + Python CLI for Calibration, and 3) TEEHR evaluation + visualizer*
+
+*[graphics by Sifan A. Koriche]*
 
 ---
 
@@ -171,14 +177,12 @@ cd NGIAB-Calibration-DevCon25
 
 ## 📝 License and Acknowledgment
 
-This workshop is supported by the Cooperative Institute for Research to Operations in Hydrology (CIROH) with funding from the NOAA Cooperative Institute Program. The tools, workflows, and concepts presented in this workshop build upon the significant efforts and contributions of several key groups and individuals. We gratefully acknowledge:
+The Summer Institute is a partnership between CUAHSI, and the University of Alabama that aims to engage the academic community in research to advance water prediction and flood forecasting. The tools, workflows, and concepts presented in this workshop build upon the significant efforts and contributions of several key groups and individuals. We gratefully acknowledge:
 
 - The development of the `NextGen In A Box (NGIAB) ecosystem` is a central initiative of `CIROH-UA`, with key development contributions from the `AWI Science and Technology Team`.
 - The core `NGEN-Cal tool`, fundamental to the calibration processes showcased, was developed by the `NOAA Office of Water Prediction (NOAA-OWP)` in collaboration with `Lynker`.
 - The `NGEN-Cal calibration workflow`, initially developed by `Xia Feng`, was subsequently refactored and integrated to operate within the NGIAB ecosystem by `Josh Cunningham`, with crucial domain science contributions from `Sifan A. Koriche, Md Shahabul Alam, and James Halgren`.
 - This `GitHub repository`, which serves as the central hub for all workshop materials, tools, detailed instructions, pre-conference and other relevant information, was prepared and is maintained by `Sifan A. Koriche and Josh Cunningham`.
-
-The statements, findings, conclusions, and recommendations presented in this workshop and its associated materials are those of the author(s) and do not necessarily reflect the official opinions of `NOAA`, `CIROH`, or the other acknowledged contributing organizations and individuals.
 
 ---
 
