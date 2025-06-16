@@ -1,4 +1,4 @@
-# NWC-CUAHSI Summer Institute 2025 Workshop: Hydrological Model Calibration in the NGIAB Ecosystem
+# NWC-CUAHSI Summer Institute 2025: Workshop on Hydrological Model Calibration in the NGIAB Ecosystem
 
 [![Workshop](https://img.shields.io/badge/Workshop-NWC--CUAHSI%20Summer%20Institute-blue?labelColor=555)](https://www.cuahsi.org/summer-institute)
 [![NextGen](https://img.shields.io/badge/NextGen-Framework-green.svg)](https://github.com/NOAA-OWP/ngen)
