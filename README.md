@@ -6,14 +6,14 @@
 
 **"How do I calibrate and share the calibrated parameters in a NextGen Framework ecosystem"**
 
-* **📅 Date**: Thursday, June 18, 2025
+* **📅 Date**: Wednesday, June 18, 2025
 * **⏰ Time**: Wednesday, June 18 | 10:45 – 12 pm CT
 * **📍 Location**: Cyber Hall GWSC classroom, Room number 1160, 248 Kirkbride Ln, Tuscaloosa, AL 35401
 * **🏛️ Organized by**: [CUAHSI](https://www.cuahsi.org/summer-institute) and [The University of Alabama](https://ciroh.ua.edu/devconference/)
 
 ---
 
-## 👥 Instructors 
+## 👥 Instructors
 
 This `GitHub repository`, which serves as the central hub for all workshop materials, tools, detailed instructions, pre-conference and other relevant information, was prepared and is maintained by [Sifan A. Koriche](https://github.com/skoriche) and [Josh Cunningham](https://github.com/JoshCu).
 
@@ -60,6 +60,7 @@ This hands-on workshop provides comprehensive guidance for hydrological model ca
 
 **For Local Setup:**
 - Download workshop data: `https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz` [Click Here to Download](https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz)
+- Or create your own `uvx --from ngiab_data_preprocess cli -i gage-10154200 --start 2007-10-01 --end 2013-09-30 -srf --source aorc`
 
 **Minimum Requirements:**
 - [Docker](https://docs.docker.com/engine/install/) (for running containerized tools)
