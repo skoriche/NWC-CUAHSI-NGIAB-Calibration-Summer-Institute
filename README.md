@@ -53,14 +53,10 @@ This hands-on workshop provides comprehensive guidance for hydrological model ca
 
 ## 🛠️ Prerequisites
 
-**For Jetstream Virtual Machines:**
-- Access to provided Jetstream Virtual Machines (instructions emailed before workshop)
-- All required software installed (e.g., Docker, UV)
-- Pre-installed data at `/home/exouser/workshop/calibration/provo-10154200`
+**Data**
+- Create your own `uvx --from ngiab_data_preprocess cli -i gage-10154200 --start 2007-10-01 --end 2013-09-30 -srf --source aorc`
+- Or Download workshop data: `https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz` [Click Here to Download](https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz)
 
-**For Local Setup:**
-- Download workshop data: `https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz` [Click Here to Download](https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz)
-- Or create your own `uvx --from ngiab_data_preprocess cli -i gage-10154200 --start 2007-10-01 --end 2013-09-30 -srf --source aorc`
 
 **Minimum Requirements:**
 - [Docker](https://docs.docker.com/engine/install/) (for running containerized tools)
@@ -96,17 +92,9 @@ This hands-on workshop provides comprehensive guidance for hydrological model ca
 
 ## 🏃‍♂️ 5-Minute Start
 
-**On Jetstream VMs:**
 ```bash
-cd /home/exouser/workshop/calibration/
-uvx ngiab-cal provo-10154200 -g 10154200 --run -i 4
-```
-
-**On Local Systems:**
-```bash
-wget https://communityhydrofabric.s3.us-east-1.amazonaws.com/example_data/provo-10154200.tar.gz
-tar -xzf provo-10154200.tar.gz
-uvx ngiab-cal provo-10154200 -g 10154200 --run -i 4
+uvx --from ngiab_data_preprocess cli -i gage-10154200 --start 2007-10-01 --end 2013-09-30 -srf --source aorc
+uvx ngiab-cal ~/ngiab_preprocess_output/gage-10154200 -g 10154200 --run -i 4
 ```
 
 That's it! Your first calibration will complete in ~10-15 minutes.
